@@ -1,5 +1,5 @@
-from auth_database import Base,engine
-import models
+from auth.auth_database import Base,engine
+from auth import models
 
 #create table
 

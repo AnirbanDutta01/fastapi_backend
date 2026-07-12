@@ -1,23 +1,18 @@
 from sqlalchemy import create_engine #to create the connection to database
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
-import os
 
-#crating database connection
 
-psql_user =  os.getenv("psql_user","postgres")#"postgres"#
-psql_password = os.getenv("psql_password","root")#"root"
-psql_host=os.getenv("psql_host","db")#"localhost"
-psql_port=os.getenv("psql_port","5432")#"5432"
-psql_database=os.getenv("psql_database","fastapi_backendOne")#"fastapi_backendOne"
+psql_user = "postgres"
+psql_password = "root"
+psql_host="localhost"
+psql_port="5432"
+psql_database="fastapi_backendOne"
 
 database_url=f"postgresql://{psql_user}:{psql_password}@{psql_host}:{psql_port}/{psql_database}"
 
-
-engine=create_engine(database_url,
-    echo=True,
-    pool_pre_ping=True
-)
+#connection
+engine=create_engine(database_url)
 
 #session -- when we use api routing session gets created
 sessionLocal=sessionmaker(autoflush=False,autocommit=False,bind=engine)
